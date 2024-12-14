@@ -1,0 +1,30 @@
+server:
+  port: 8082
+
+application:
+  kafka:
+    topic: "order-topic"
+
+spring:
+  application:
+    name: service-order
+  datasource:
+    url: jdbc:h2:mem:ordersDb
+  jpa:
+    generate-ddl: false
+    open-in-view: false
+    show-sql: true
+    hibernate:
+      ddl-auto: none
+  liquibase:
+    enabled: true
+    change-log: liquibase/changelog.master.yml
+eureka:
+  client:
+    fetchRegistry: true
+    serviceUrl:
+      defaultZone: ${EUREKA_CLIENT_SERVICEURL_DEFAULTZONE:http://localhost:9999/eureka/}
+  instance:
+    lease-renewal-interval-in-seconds: 30
+    metadataMap:
+      zone: zone1

@@ -1,0 +1,27 @@
+# syntax=docker/dockerfile-upstream:master-labs
+
+# Используем официальный образ Maven для сборки приложения
+FROM maven:3.8.5-openjdk-17 AS build
+
+# Устанавливаем рабочую директорию внутри контейнера
+WORKDIR /app
+
+# Копируем файлы проекта в контейнер
+COPY --parents pom.xml ./pom.xml
+COPY eureka-server/pom.xml ./eureka-server/
+COPY eureka-server/src ./eureka-server/src
+
+# Собираем проект с помощью Maven
+RUN mvn -f ./eureka-server/pom.xml clean package -DskipTests
+
+# Используем более легковесный образ для запуска Java-приложения
+FROM openjdk:17-jdk-slim
+
+# Устанавливаем рабочую директорию
+WORKDIR /app
+
+# Копируем собранный .jar файл из предыдущего этапа
+COPY --from=build /app/eureka-server/target/*.jar ./myapp.jar
+
+# Указываем команду для запуска приложения
+CMD ["java", "-jar", "myapp.jar"]

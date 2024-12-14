@@ -1,0 +1,53 @@
+databaseChangeLog:
+  - changeSet:
+      id: 1
+      author: boris.osechinskiy
+      preConditions:
+        - onFail: WARN
+        - not:
+            - tableExists:
+                tableName: orders
+      comment: Создание таблицы заказов
+      changes:
+        - createTable:
+            tableName: orders
+            columns:
+              - column:
+                  name: id
+                  type: int
+                  autoIncrement: true
+                  constraints:
+                    primaryKey: true
+              - column:
+                  name: user_id
+                  type: int
+              - column:
+                  name: category
+                  type: varchar(100)
+              - column:
+                  name: title
+                  type: varchar(255)
+              - column:
+                  name: description
+                  type: varchar(1000)
+              - column:
+                  name: phone_id
+                  type: int
+              - column:
+                  name: creation_timestamp
+                  type: timestamp
+              - column:
+                  name: desired_completion_date
+                  type: timestamp
+              - column:
+                  name: amount
+                  type: int
+              - column:
+                  name: address
+                  type: varchar(100)
+              - column:
+                  name: location
+                  type: varchar(100)
+      rollback:
+        - dropTable:
+            tableName: orders

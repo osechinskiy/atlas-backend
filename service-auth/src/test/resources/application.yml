@@ -1,0 +1,7 @@
+spring:
+  liquibase:
+    enabled: false
+
+jwt:
+  secret: E2Sn66b1zPLNf9IxLcBG8x8r9Ody1Bi3Vsqc0/5o3KKfdgHvnxAB3Z3dPh2LCDek
+

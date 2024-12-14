@@ -1,0 +1,44 @@
+databaseChangeLog:
+  - changeSet:
+      id: 1
+      author: boris.osechinskiy
+      preConditions:
+        - onFail: WARN
+        - not:
+            - tableExists:
+                tableName: resume
+      comment: Создание таблицы с анкетами специалистов
+      changes:
+        - createTable:
+            tableName: resume
+            columns:
+              - column:
+                  name: id
+                  type: int
+                  autoIncrement: true
+                  constraints:
+                    primaryKey: true
+              - column:
+                  name: user_id
+                  type: int
+              - column:
+                  name: category
+                  type: varchar(100)
+              - column:
+                  name: title
+                  type: varchar(255)
+              - column:
+                  name: description
+                  type: varchar(1000)
+              - column:
+                  name: phone_id
+                  type: int
+              - column:
+                  name: creation_timestamp
+                  type: timestamp
+              - column:
+                  name: experience
+                  type: int
+      rollback:
+        - dropTable:
+            tableName: resume

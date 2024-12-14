@@ -1,0 +1,177 @@
+services:
+  redis:
+    image: redis:8.0-M02-alpine
+    container_name: redis
+    ports:
+      - "6439:6439"
+    networks:
+      - my-network
+
+  zookeeper:
+    image: confluentinc/cp-zookeeper:6.2.0
+    container_name: zookeeper
+    environment:
+      ZOOKEEPER_CLIENT_PORT: 2181
+      ZOOKEEPER_TICK_TIME: 2000
+    networks:
+      - my-network
+
+  kafka:
+    image: confluentinc/cp-kafka:7.0.0
+    container_name: kafka
+    ports:
+      - "9092:9092"
+    depends_on:
+      - zookeeper
+    environment:
+      KAFKA_BROKER_ID: 1
+      KAFKA_ZOOKEEPER_CONNECT: 'zookeeper:2181'
+      KAFKA_LISTENER_SECURITY_PROTOCOL_MAP: PLAINTEXT:PLAINTEXT,PLAINTEXT_INTERNAL:PLAINTEXT
+      KAFKA_ADVERTISED_LISTENERS: PLAINTEXT://kafka:9092,PLAINTEXT_INTERNAL://kafka:29092
+      KAFKA_OFFSETS_TOPIC_REPLICATION_FACTOR: 1
+      KAFKA_TRANSACTION_STATE_LOG_MIN_ISR: 1
+      KAFKA_TRANSACTION_STATE_LOG_REPLICATION_FACTOR: 1
+    networks:
+      - my-network
+
+  postgres_service_resume:
+    image: "postgres:16"
+    container_name: postgres_service_resume
+    ports:
+      - "5434:5432"
+    environment:
+      - POSTGRES_USER=postgres
+      - POSTGRES_PASSWORD=postgres
+      - POSTGRES_DB=resumeDb
+    networks:
+      - my-network
+
+  postgres_service_user:
+    image: "postgres:16"
+    container_name: postgres_service_user
+    ports:
+      - "5432:5432"
+    environment:
+      - POSTGRES_USER=postgres
+      - POSTGRES_PASSWORD=postgres
+      - POSTGRES_DB=userDb
+    networks:
+      - my-network
+
+  postgres_service_order:
+    image: "postgres:16"
+    container_name: postgres_service_order
+    ports:
+      - "5433:5432"
+    environment:
+      - POSTGRES_USER=postgres
+      - POSTGRES_PASSWORD=postgres
+      - POSTGRES_DB=orderDb
+    networks:
+      - my-network
+
+  service-user:
+    build:
+      context: .
+      dockerfile: ./service-user/Dockerfile
+    container_name: service-user
+    environment:
+      - SPRING_DATASOURCE_URL=jdbc:postgresql://postgres_service_user:5432/userDb
+      - SPRING_DATASOURCE_USERNAME=postgres
+      - SPRING_DATASOURCE_PASSWORD=postgres
+      - SPRING.JPA.PROPERTIES.HIBERNATE.DIALECT=org.hibernate.dialect.PostgreSQLDialect
+      - EUREKA_CLIENT_SERVICEURL_DEFAULTZONE=http://eureka-server:9999/eureka/
+      - REDIS_HOST=redis
+    networks:
+      - my-network
+    depends_on:
+      - postgres_service_user
+      - eureka-server
+
+  service-order:
+    build:
+      context: .
+      dockerfile: ./service-order/Dockerfile
+    container_name: service-order
+    networks:
+      - my-network
+    environment:
+      - SPRING_DATASOURCE_URL=jdbc:postgresql://postgres_service_order:5432/orderDb
+      - SPRING_DATASOURCE_USERNAME=postgres
+      - SPRING_DATASOURCE_PASSWORD=postgres
+      - EUREKA_CLIENT_SERVICEURL_DEFAULTZONE=http://eureka-server:9999/eureka/
+      - KAFKA_PRODUCER_BOOTSTRAP_SERVERS=kafka:9092
+    depends_on:
+      - postgres_service_order
+      - kafka
+      - eureka-server
+
+  service-resume:
+    build:
+      context: .
+      dockerfile: ./service-resume/Dockerfile
+    container_name: service-resume
+    networks:
+      - my-network
+    environment:
+      - SPRING_DATASOURCE_URL=jdbc:postgresql://postgres_service_resume:5432/resumeDb
+      - SPRING_DATASOURCE_USERNAME=postgres
+      - SPRING_DATASOURCE_PASSWORD=postgres
+      - EUREKA_CLIENT_SERVICEURL_DEFAULTZONE=http://eureka-server:9999/eureka/
+    depends_on:
+      - postgres_service_resume
+      - eureka-server
+
+  service-notification:
+    build:
+      context: .
+      dockerfile: ./service-notification/Dockerfile
+    container_name: service-notification
+    environment:
+      - EUREKA_CLIENT_SERVICEURL_DEFAULTZONE=http://eureka-server:9999/eureka/
+      - KAFKA_CONSUMER_BOOTSTRAP_SERVERS=kafka:9092
+    networks:
+      - my-network
+    depends_on:
+      - kafka
+      - eureka-server
+
+  service-auth:
+    build:
+      context: .
+      dockerfile: ./service-auth/Dockerfile
+    container_name: service-auth
+    environment:
+      - EUREKA_CLIENT_SERVICEURL_DEFAULTZONE=http://eureka-server:9999/eureka/
+    networks:
+      - my-network
+    depends_on:
+      - eureka-server
+
+  api-gateway:
+    build:
+      context: .
+      dockerfile: ./api-gateway/Dockerfile
+    container_name: api-gateway
+    ports:
+      - "7777:7777"
+    environment:
+      - EUREKA_CLIENT_SERVICEURL_DEFAULTZONE=http://eureka-server:9999/eureka/
+    networks:
+      - my-network
+    depends_on:
+      - eureka-server
+
+  eureka-server:
+    build:
+      context: .
+      dockerfile: ./eureka-server/Dockerfile
+    container_name: eureka-server
+    ports:
+      - "9999:9999"
+    networks:
+      - my-network
+
+networks:
+  my-network:
+    external: true
