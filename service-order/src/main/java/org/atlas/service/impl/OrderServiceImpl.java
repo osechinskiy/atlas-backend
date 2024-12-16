@@ -6,7 +6,6 @@ import java.time.LocalDateTime;
 import java.util.List;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
-import org.apache.commons.collections4.CollectionUtils;
 import org.apache.commons.lang.StringUtils;
 import org.atlas.exception.OrderNotFoundException;
 import org.atlas.mapper.OrderMapper;
@@ -32,7 +31,7 @@ import org.springframework.web.util.UriComponentsBuilder;
 @Slf4j
 @Service
 @RequiredArgsConstructor
-public class OrderServiceIml implements OrderService {
+public class OrderServiceImpl implements OrderService {
 
     private static final String MESSAGE = "Заказ не найден";
 

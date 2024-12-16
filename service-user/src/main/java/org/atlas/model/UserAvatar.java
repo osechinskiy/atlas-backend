@@ -6,7 +6,6 @@ import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
 import jakarta.persistence.JoinColumn;
-import jakarta.persistence.Lob;
 import jakarta.persistence.NamedAttributeNode;
 import jakarta.persistence.NamedEntityGraph;
 import jakarta.persistence.OneToOne;
@@ -25,7 +24,7 @@ import lombok.NoArgsConstructor;
 @NoArgsConstructor
 @Table(name = "user_avatar")
 @NamedEntityGraph(name = "user-avatar-graph", attributeNodes = {@NamedAttributeNode("user")})
-public class UserAvatar  implements Serializable {
+public class UserAvatar implements Serializable {
 
     @Serial
     private static final long serialVersionUID = 1L;
@@ -38,6 +37,6 @@ public class UserAvatar  implements Serializable {
     @JoinColumn(name = "user_id")
     private User user;
 
-    @Column(columnDefinition="TEXT")
+    @Column(columnDefinition = "TEXT")
     private String avatar;
 }

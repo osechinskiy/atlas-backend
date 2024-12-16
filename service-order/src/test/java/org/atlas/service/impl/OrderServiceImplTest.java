@@ -41,7 +41,7 @@ import static org.mockito.Mockito.*;
 
 @ExtendWith(MockitoExtension.class)
 @TestMethodOrder(MethodOrderer.OrderAnnotation.class)
-class OrderServiceImlTest {
+class OrderServiceImplTest {
 
     @Mock
     private OrderRepository repository;
@@ -62,7 +62,7 @@ class OrderServiceImlTest {
     private OrderMapper orderMapper;
 
     @InjectMocks
-    private OrderServiceIml orderService;
+    private OrderServiceImpl orderService;
 
 
     @Test

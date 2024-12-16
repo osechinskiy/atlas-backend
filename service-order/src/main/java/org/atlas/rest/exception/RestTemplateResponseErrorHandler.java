@@ -1,7 +1,6 @@
 package org.atlas.rest.exception;
 
 import com.fasterxml.jackson.databind.ObjectMapper;
-import jakarta.ws.rs.NotFoundException;
 import java.io.BufferedReader;
 import java.io.IOException;
 import java.io.InputStream;

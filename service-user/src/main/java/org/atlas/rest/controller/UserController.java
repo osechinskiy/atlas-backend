@@ -121,7 +121,7 @@ public class UserController {
     @GetMapping("/api/v1/user/information")
     public ResponseEntity<UserInfoResponse> getUserInformation(
             @RequestParam(value = "userId") Long userId,
-            @RequestParam(value = "phoneId") Long phoneId ) {
+            @RequestParam(value = "phoneId") Long phoneId) {
         return ResponseEntity
                 .status(HttpStatus.OK)
                 .body(userService.getUserInfoById(userId, phoneId));

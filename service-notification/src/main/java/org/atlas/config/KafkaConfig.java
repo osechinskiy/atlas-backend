@@ -31,9 +31,9 @@ import static org.springframework.kafka.support.serializer.JsonDeserializer.TYPE
 @Configuration
 @Slf4j
 public class KafkaConfig {
-    public final String topicName;
+    private final String topicName;
 
-    public final String bootstrapServers;
+    private final String bootstrapServers;
 
     public KafkaConfig(@Value("${application.kafka.topic}") String topicName,
             @Value("${kafka_consumer_bootstrap_servers}") String bootstrapServers) {

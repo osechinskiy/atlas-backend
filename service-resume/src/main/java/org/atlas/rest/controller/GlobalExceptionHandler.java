@@ -22,14 +22,16 @@ public class GlobalExceptionHandler {
     }
 
     @ExceptionHandler(InvalidTypeOfPerformedException.class)
-    public ResponseEntity<CustomErrorResponse> catchInvalidTypeOfPerformedException(InvalidTypeOfPerformedException ex) {
+    public ResponseEntity<CustomErrorResponse> catchInvalidTypeOfPerformedException(
+            InvalidTypeOfPerformedException ex) {
         log.error(ex.getMessage(), ex);
         return new ResponseEntity<>(new CustomErrorResponse(HttpStatus.BAD_REQUEST, ex.getMessage()),
                 HttpStatus.BAD_REQUEST);
     }
 
     @ExceptionHandler(TypeOfPerformedNotFoundException.class)
-    public ResponseEntity<CustomErrorResponse> catchTypeOfPerformedNotFoundException(TypeOfPerformedNotFoundException ex) {
+    public ResponseEntity<CustomErrorResponse> catchTypeOfPerformedNotFoundException(
+            TypeOfPerformedNotFoundException ex) {
         log.error(ex.getMessage(), ex);
         return new ResponseEntity<>(new CustomErrorResponse(HttpStatus.NOT_FOUND, ex.getMessage()),
                 HttpStatus.NOT_FOUND);

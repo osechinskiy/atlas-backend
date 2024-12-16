@@ -4,7 +4,6 @@ import jakarta.validation.Valid;
 import java.util.List;
 import lombok.RequiredArgsConstructor;
 import org.atlas.mapper.OrderMapper;
-import org.atlas.model.OrderTypes;
 import org.atlas.model.OrderViewStats;
 import org.atlas.rest.dto.NewOrderRequest;
 import org.atlas.model.dto.OrderDto;

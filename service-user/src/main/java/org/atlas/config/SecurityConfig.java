@@ -30,7 +30,6 @@ public class SecurityConfig {
     @Bean
     public SecurityFilterChain securityFilterChain(HttpSecurity http) throws Exception {
         http.csrf(AbstractHttpConfigurer::disable)
-                // Своего рода отключение CORS (разрешение запросов со всех доменов)
                 .cors(cors -> cors.configurationSource(request -> {
                     var corsConfiguration = new CorsConfiguration();
                     corsConfiguration.setAllowedOriginPatterns(List.of("*"));
@@ -40,10 +39,7 @@ public class SecurityConfig {
                     return corsConfiguration;
                 }))
                 .headers(header -> header.frameOptions(HeadersConfigurer.FrameOptionsConfig::disable))
-                // Настройка доступа к конечным точкам
                 .authorizeHttpRequests(request -> request
-                        // Можно указать конкретный путь, * - 1 уровень вложенности,
-                        // ** - любое количество уровней вложенности
                         .requestMatchers("/account").permitAll()
                         .requestMatchers("/api/v1/user/info").permitAll()
                         .requestMatchers("/api/v1/user/information").permitAll()

@@ -1,10 +1,8 @@
 package org.atlas.service;
 
-import java.util.Collection;
 import java.util.List;
 import org.atlas.exception.OrderNotFoundException;
 import org.atlas.model.Order;
-import org.atlas.model.OrderTypes;
 import org.atlas.rest.dto.NewOrderRequest;
 import org.atlas.model.dto.OrderDto;
 
