@@ -104,10 +104,11 @@ class OrdersControllerTest {
     void getAllOrders_Positive() throws Exception {
         List<OrderDto> orderDtos = List.of(new OrderDto());
 
-        when(orderService.findOrdersByCategories(any())).thenReturn(List.of());
-        when(mapper.mapOrders(any())).thenReturn(orderDtos);
+        when(orderService.findOrdersByCategories(anyLong())).thenReturn(List.of());
+        when(mapper.mapOrders(anyList())).thenReturn(orderDtos);
 
         mockMvc.perform(get("/all")
+                        .param("userId", "1")
                         .contentType(MediaType.APPLICATION_JSON))
                 .andExpect(status().isOk())
                 .andExpect(jsonPath("$", hasSize(1)));

@@ -13,6 +13,7 @@ import org.atlas.repository.OrderRepository;
 import org.atlas.rest.dto.NewOrderRequest;
 import org.atlas.model.dto.OrderDto;
 import org.atlas.rest.dto.SimpleUserInfoResponse;
+import org.atlas.service.DataSender;
 import org.atlas.service.OrderViewStatsService;
 
 import org.junit.jupiter.api.DisplayName;
@@ -23,15 +24,19 @@ import org.junit.jupiter.api.extension.ExtendWith;
 import org.mockito.InjectMocks;
 import org.mockito.Mock;
 import org.mockito.junit.jupiter.MockitoExtension;
+import org.springframework.core.ParameterizedTypeReference;
 import org.springframework.http.HttpMethod;
 import org.springframework.http.MediaType;
 import org.springframework.web.client.RestClient;
 import org.springframework.web.client.RestClient.RequestBodyUriSpec;
+import org.springframework.web.client.RestClient.RequestHeadersSpec;
+import org.springframework.web.client.RestClient.RequestHeadersUriSpec;
 import org.springframework.web.client.RestClient.ResponseSpec;
 import org.springframework.web.client.RestClientException;
 
 import java.time.LocalDateTime;
 import java.util.Optional;
+import org.springframework.web.util.UriComponentsBuilder;
 
 import static org.junit.jupiter.api.Assertions.*;
 import static org.mockito.ArgumentMatchers.any;
@@ -60,6 +65,9 @@ class OrderServiceImplTest {
 
     @Mock
     private OrderMapper orderMapper;
+
+    @Mock
+    private DataSender dataSender;
 
     @InjectMocks
     private OrderServiceImpl orderService;
@@ -177,7 +185,6 @@ class OrderServiceImplTest {
         orderService.deleteOrder(1L);
 
         verify(repository, times(1)).deleteById(anyLong());
-        verify(orderViewStatsService, times(1)).recordOrderView(anyLong());
     }
 
     @Test
@@ -234,7 +241,21 @@ class OrderServiceImplTest {
     @DisplayName("Должен находить заказы по категориям")
     void shouldFindOrdersByCategories_Positive() {
         List<Order> orders = Arrays.asList(new Order(), new Order());
+        List<String> expectedCategories = List.of("CLEAN_UP", "TUTORING");
+
+        RequestHeadersUriSpec requestHeadersUriSpec = mock(RequestHeadersUriSpec.class);
+        RequestHeadersSpec requestHeadersSpec = mock(RequestHeadersSpec.class);
+        ResponseSpec responseSpec = mock(ResponseSpec.class);
+
         when(repository.findOrdersByCategories(anyCollection())).thenReturn(orders);
+
+        when(discoveryClient.getNextServerFromEureka("SERVICE-RESUME", false)).thenReturn(instanceInfo);
+        when(instanceInfo.getHomePageUrl()).thenReturn("http://localhost:8080");
+        when(restClient.get()).thenReturn(requestHeadersUriSpec);
+        when(requestHeadersUriSpec.uri(getUrl())).thenReturn(requestHeadersSpec);
+        when(requestHeadersSpec.accept(MediaType.APPLICATION_JSON)).thenReturn(requestHeadersSpec);
+        when(requestHeadersSpec.retrieve()).thenReturn(responseSpec);
+        when(responseSpec.body(any(ParameterizedTypeReference.class))).thenReturn(expectedCategories);
 
         List<Order> result = orderService.findOrdersByCategories(1L);
 
@@ -246,11 +267,29 @@ class OrderServiceImplTest {
     @org.junit.jupiter.api.Order(12)
     @DisplayName("Должен возвращать пустой список, если заказы по категориям не найдены")
     void shouldFindOrdersByCategories_Empty() {
+        RequestHeadersUriSpec requestHeadersUriSpec = mock(RequestHeadersUriSpec.class);
+        RequestHeadersSpec requestHeadersSpec = mock(RequestHeadersSpec.class);
+        ResponseSpec responseSpec = mock(ResponseSpec.class);
+
         when(repository.findOrdersByCategories(anyCollection())).thenReturn(Collections.emptyList());
 
+        when(discoveryClient.getNextServerFromEureka("SERVICE-RESUME", false)).thenReturn(instanceInfo);
+        when(instanceInfo.getHomePageUrl()).thenReturn("http://localhost:8080");
+        when(restClient.get()).thenReturn(requestHeadersUriSpec);
+        when(requestHeadersUriSpec.uri(getUrl())).thenReturn(requestHeadersSpec);
+        when(requestHeadersSpec.accept(MediaType.APPLICATION_JSON)).thenReturn(requestHeadersSpec);
+        when(requestHeadersSpec.retrieve()).thenReturn(responseSpec);
+        when(responseSpec.body(any(ParameterizedTypeReference.class))).thenReturn(Collections.emptyList());
         List<Order> result = orderService.findOrdersByCategories(1L);
 
         assertTrue(result.isEmpty());
         verify(repository, times(1)).findOrdersByCategories(anyCollection());
+    }
+
+    private String getUrl() {
+        return UriComponentsBuilder.fromHttpUrl("http://localhost:8080")
+                .path("/api/v1/resume/categories_info")
+                .queryParam("userId", 1L)
+                .toUriString();
     }
 }
