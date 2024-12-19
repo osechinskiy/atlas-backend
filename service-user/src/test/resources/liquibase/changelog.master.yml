@@ -1,0 +1,7 @@
+databaseChangeLog:
+  - include:
+      file: liquibase/migration/create_user_table.yml
+  - include:
+      file: liquibase/migration/create_phone_table.yml
+  - include:
+      file: liquibase/migration/create_user_avatar_table.yml

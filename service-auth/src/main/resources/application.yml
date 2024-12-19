@@ -1,0 +1,21 @@
+spring:
+  application:
+    name: service-authorization
+  liquibase:
+    enabled: false
+
+jwt:
+  secret: E2Sn66b1zPLNfOIxLcBG8x8r9Ody1Bi2Vsqc0/5o3KKfdgHvnxAB3Z3dPh2WCDek
+
+server:
+  port: 8081
+
+eureka:
+  client:
+    fetchRegistry: true
+    serviceUrl:
+      defaultZone: ${EUREKA_CLIENT_SERVICEURL_DEFAULTZONE:http://localhost:9999/eureka/}
+  instance:
+    lease-renewal-interval-in-seconds: 30
+    metadataMap:
+      zone: zone1

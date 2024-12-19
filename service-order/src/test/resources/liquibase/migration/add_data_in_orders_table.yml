@@ -1,0 +1,1075 @@
+databaseChangeLog:
+  - changeSet:
+      id: 1
+      author: boris.osechinskiy
+      preConditions:
+        - onFail: WARN
+        - tableExists:
+            tableName: orders
+      comment: Наполнение таблицы orders данными
+      changes:
+        - insert:
+            tableName: orders
+            columns:
+              - column:
+                  name: user_id
+                  value: 2
+              - column:
+                  name: category
+                  value: "TUTORING"
+              - column:
+                  name: title
+                  value: "Подготовка к экзамену по математике"
+              - column:
+                  name: description
+                  value: "Через месяц контрольная работа по алгебре. Нужен репетитор для объяснения сложных тем и решения задач"
+              - column:
+                  name: phone_id
+                  value: 1
+              - column:
+                  name: location
+                  value: "55.854781, 37.496906"
+              - column:
+                  name: address
+                  value: "Флотская улица, 7к3"
+              - column:
+                  name: creation_timestamp
+                  value: "2024-11-11"
+              - column:
+                  name: amount
+                  value: 1000
+        - insert:
+            tableName: orders
+            columns:
+              - column:
+                  name: user_id
+                  value: 2
+              - column:
+                  name: category
+                  value: "PHOTOGRAPHER_SERVICES"
+              - column:
+                  name: title
+                  value: "Фотосессия для свадьбы"
+              - column:
+                  name: description
+                  value: "Ищем фотографа для свадебной фотосессии. Дата — через месяц. Нужно запечатлеть важные моменты и атмосферу праздника"
+              - column:
+                  name: phone_id
+                  value: 1
+              - column:
+                  name: location
+                  value: "55.854781, 37.496906"
+              - column:
+                  name: address
+                  value: "Флотская улица, 7к3"
+              - column:
+                  name: creation_timestamp
+                  value: "2024-11-12"
+              - column:
+                  name: desired_completion_date
+                  value: "2024-12-12"
+              - column:
+                  name: amount
+                  value: 20000
+        - insert:
+            tableName: orders
+            columns:
+              - column:
+                  name: user_id
+                  value: 2
+              - column:
+                  name: category
+                  value: "GRAPHIC_DESIGN"
+              - column:
+                  name: title
+                  value: "Создание логотипа для стартапа"
+              - column:
+                  name: description
+                  value: "Ищу дизайнера для разработки логотипа. Нужно учесть стиль компании и целевую аудиторию."
+              - column:
+                  name: phone_id
+                  value: 1
+              - column:
+                  name: location
+                  value: "55.854781, 37.496906"
+              - column:
+                  name: address
+                  value: "Флотская улица, 7к3"
+              - column:
+                  name: creation_timestamp
+                  value: "2024-11-13"
+              - column:
+                  name: amount
+                  value: 5000
+        - insert:
+            tableName: orders
+            columns:
+              - column:
+                  name: user_id
+                  value: 2
+              - column:
+                  name: category
+                  value: "TRANSFER"
+              - column:
+                  name: title
+                  value: "Перевод документации с английского на русский"
+              - column:
+                  name: description
+                  value: "Необходим перевод технической документации (50 страниц). Важно сохранить терминологию"
+              - column:
+                  name: phone_id
+                  value: 1
+              - column:
+                  name: location
+                  value: "55.854781, 37.496906"
+              - column:
+                  name: address
+                  value: "Флотская улица, 7к3"
+              - column:
+                  name: creation_timestamp
+                  value: "2024-11-13"
+              - column:
+                  name: amount
+                  value: 700
+        - insert:
+            tableName: orders
+            columns:
+              - column:
+                  name: user_id
+                  value: 2
+              - column:
+                  name: category
+                  value: "CLEAN_UP"
+              - column:
+                  name: title
+                  value: "Генеральная уборка квартиры"
+              - column:
+                  name: description
+                  value: "Нужна помощь в генеральной уборке 3-комнатной квартиры. Предпочтительно с опытом."
+              - column:
+                  name: phone_id
+                  value: 1
+              - column:
+                  name: location
+                  value: "55.854781, 37.496906"
+              - column:
+                  name: address
+                  value: "Флотская улица, 7к3"
+              - column:
+                  name: creation_timestamp
+                  value: "2024-11-13"
+              - column:
+                  name: amount
+                  value: 3000
+        - insert:
+            tableName: orders
+            columns:
+              - column:
+                  name: user_id
+                  value: 2
+              - column:
+                  name: category
+                  value: "MINOR_REPAIRS"
+              - column:
+                  name: title
+                  value: "Ремонт кухни"
+              - column:
+                  name: description
+                  value: "Нужен мастер для ремонта кухни, включая замену плитки и установку новой мебели"
+              - column:
+                  name: phone_id
+                  value: 1
+              - column:
+                  name: creation_timestamp
+                  value: "2024-11-13"
+              - column:
+                  name: location
+                  value: "55.854781, 37.496906"
+              - column:
+                  name: address
+                  value: "Флотская улица, 7к3"
+              - column:
+                  name: desired_completion_date
+                  value: "2025-01-13"
+              - column:
+                  name: amount
+                  value: 15000
+        - insert:
+            tableName: orders
+            columns:
+              - column:
+                  name: user_id
+                  value: 2
+              - column:
+                  name: category
+                  value: "TUTORING"
+              - column:
+                  name: title
+                  value: "Курсы по программированию"
+              - column:
+                  name: description
+                  value: "Ищу преподавателя для проведения курсов по Python. Группа из 5 человек, занятия 2 раза в неделю."
+              - column:
+                  name: phone_id
+                  value: 1
+              - column:
+                  name: creation_timestamp
+                  value: "2024-11-13"
+              - column:
+                  name: location
+                  value: "55.854781, 37.496906"
+              - column:
+                  name: address
+                  value: "Флотская улица, 7к3"
+              - column:
+                  name: desired_completion_date
+                  value: "2025-01-13"
+              - column:
+                  name: amount
+                  value: 1200
+        - insert:
+            tableName: orders
+            columns:
+              - column:
+                  name: user_id
+                  value: 1
+              - column:
+                  name: category
+                  value: "FITNESS_TRAINER"
+              - column:
+                  name: title
+                  value: "Персональный тренер по фитнесу"
+              - column:
+                  name: description
+                  value: "Ищу персонального тренера для занятий фитнесом 2-3 раза в неделю. Нужна программа для похудения и улучшения физической формы."
+              - column:
+                  name: phone_id
+                  value: 3
+              - column:
+                  name: location
+                  value: "55.784001, 37.561998"
+              - column:
+                  name: address
+                  value: "55.854781, 37.496906"
+              - column:
+                  name: creation_timestamp
+                  value: "2024-11-13"
+              - column:
+                  name: desired_completion_date
+                  value: "2025-02-12"
+              - column:
+                  name: amount
+                  value: 2000
+        - insert:
+            tableName: orders
+            columns:
+              - column:
+                  name: user_id
+                  value: 1
+              - column:
+                  name: category
+                  value: "TUTORING"
+              - column:
+                  name: title
+                  value: "3d моделирование"
+              - column:
+                  name: description
+                  value: "Ищу специалиста по 3D моделированию для создания высококачественных моделей для моего проекта. Опыт работы в сфере 3D графики обязателен"
+              - column:
+                  name: phone_id
+                  value: 3
+              - column:
+                  name: location
+                  value: "55.842341, 37.435637"
+              - column:
+                  name: address
+                  value: "улица Фабрициуса, 19к3с3"
+              - column:
+                  name: creation_timestamp
+                  value: "2024-11-13"
+              - column:
+                  name: desired_completion_date
+                  value: "2025-02-12"
+              - column:
+                  name: amount
+                  value: 2000
+        - insert:
+            tableName: orders
+            columns:
+              - column:
+                  name: user_id
+                  value: 1
+              - column:
+                  name: category
+                  value: "GRAPHIC_DESIGN"
+              - column:
+                  name: title
+                  value: "Создание логотипа для стартапа"
+              - column:
+                  name: description
+                  value: "Ищу дизайнера для разработки логотипа. Нужно учесть стиль компании и целевую аудиторию."
+              - column:
+                  name: phone_id
+                  value: 3
+              - column:
+                  name: location
+                  value: "55.842341, 37.435637"
+              - column:
+                  name: address
+                  value: "улица Фабрициуса, 19к3с3"
+              - column:
+                  name: creation_timestamp
+                  value: "2024-11-13"
+              - column:
+                  name: amount
+                  value: 5000
+        - insert:
+            tableName: orders
+            columns:
+              - column:
+                  name: user_id
+                  value: 1
+              - column:
+                  name: category
+                  value: "TUTORING"
+              - column:
+                  name: title
+                  value: "Уроки английского языка"
+              - column:
+                  name: description
+                  value: "Нужен репетитор для подготовки к экзамену по английскому языку."
+              - column:
+                  name: phone_id
+                  value: 3
+              - column:
+                  name: location
+                  value: "55.842341, 37.435637"
+              - column:
+                  name: address
+                  value: "улица Фабрициуса, 19к3с3"
+              - column:
+                  name: creation_timestamp
+                  value: "2024-10-15"
+              - column:
+                  name: amount
+                  value: 3000
+        - insert:
+            tableName: orders
+            columns:
+              - column:
+                  name: user_id
+                  value: 1
+              - column:
+                  name: category
+                  value: "COMPUTER_REPAIR_SERVICES"
+              - column:
+                  name: title
+                  value: "Ремонт ноутбука"
+              - column:
+                  name: description
+                  value: "Требуется починить ноутбук, не включается после обновления."
+              - column:
+                  name: phone_id
+                  value: 3
+              - column:
+                  name: location
+                  value: "55.842341, 37.435637"
+              - column:
+                  name: address
+                  value: "улица Фабрициуса, 19к3с3"
+              - column:
+                  name: creation_timestamp
+                  value: "2024-09-10"
+              - column:
+                  name: amount
+                  value: 4000
+        - insert:
+            tableName: orders
+            columns:
+              - column:
+                  name: user_id
+                  value: 3
+              - column:
+                  name: category
+                  value: "PHOTOGRAPHER_SERVICES"
+              - column:
+                  name: title
+                  value: "Фотосессия на природе"
+              - column:
+                  name: description
+                  value: "Ищу фотографа для фотосессии на природе. Нужны качественные снимки."
+              - column:
+                  name: phone_id
+                  value: 6
+              - column:
+                  name: location
+                  value: "55.810322, 37.708930"
+              - column:
+                  name: address
+                  value: "3-я Гражданская улица, 52"
+              - column:
+                  name: creation_timestamp
+                  value: "2024-09-15"
+              - column:
+                  name: amount
+                  value: 7000
+        - insert:
+            tableName: orders
+            columns:
+              - column:
+                  name: user_id
+                  value: 3
+              - column:
+                  name: category
+                  value: "MINOR_REPAIRS"
+              - column:
+                  name: title
+                  value: "Ремонт дверного замка"
+              - column:
+                  name: description
+                  value: "Нужен мастер для ремонта дверного замка. Замок заедает."
+              - column:
+                  name: phone_id
+                  value: 5
+              - column:
+                  name: location
+                  value: "55.810322, 37.708930"
+              - column:
+                  name: address
+                  value: "3-я Гражданская улица, 52"
+              - column:
+                  name: creation_timestamp
+                  value: "2024-10-12"
+              - column:
+                  name: amount
+                  value: 1500
+        - insert:
+            tableName: orders
+            columns:
+              - column:
+                  name: user_id
+                  value: 3
+              - column:
+                  name: category
+                  value: "TRANSFER"
+              - column:
+                  name: title
+                  value: "Перевод статьи"
+              - column:
+                  name: description
+                  value: "Нужен переводчик для перевода научной статьи с английского на русский."
+              - column:
+                  name: phone_id
+                  value: 5
+              - column:
+                  name: location
+                  value: "55.810322, 37.708930"
+              - column:
+                  name: address
+                  value: "3-я Гражданская улица, 52"
+              - column:
+                  name: creation_timestamp
+                  value: "2024-11-05"
+              - column:
+                  name: amount
+                  value: 2500
+        - insert:
+            tableName: orders
+            columns:
+              - column:
+                  name: user_id
+                  value: 4
+              - column:
+                  name: category
+                  value: "PSYCHOLOGY_CONSULTATIONS"
+              - column:
+                  name: title
+                  value: "Консультация психолога"
+              - column:
+                  name: description
+                  value: "Ищу психолога для личных консультаций. Нужна помощь в решении личных проблем."
+              - column:
+                  name: phone_id
+                  value: 9
+              - column:
+                  name: location
+                  value: "55.726379, 37.667048"
+              - column:
+                  name: address
+                  value: "улица Мельникова, 18А"
+              - column:
+                  name: creation_timestamp
+                  value: "2024-12-03"
+              - column:
+                  name: amount
+                  value: 4000
+        - insert:
+            tableName: orders
+            columns:
+              - column:
+                  name: user_id
+                  value: 4
+              - column:
+                  name: category
+                  value: "MANICURE_SERVICES"
+              - column:
+                  name: title
+                  value: "Услуги маникюра"
+              - column:
+                  name: description
+                  value: "Требуется специалист по маникюру для регулярных процедур."
+              - column:
+                  name: phone_id
+                  value: 9
+              - column:
+                  name: location
+                  value: "55.726379, 37.667048"
+              - column:
+                  name: address
+                  value: "улица Мельникова, 18А"
+              - column:
+                  name: creation_timestamp
+                  value: "2024-10-20"
+              - column:
+                  name: amount
+                  value: 2500
+        - insert:
+            tableName: orders
+            columns:
+              - column:
+                  name: user_id
+                  value: 4
+              - column:
+                  name: category
+                  value: "ELDERLY_CARE_SERVICES"
+              - column:
+                  name: title
+                  value: "Уход за пожилым человеком"
+              - column:
+                  name: description
+                  value: "Ищу сиделку для ухода за пожилым человеком. Нужен опыт работы."
+              - column:
+                  name: phone_id
+                  value: 10
+              - column:
+                  name: location
+                  value: "55.726379, 37.667048"
+              - column:
+                  name: address
+                  value: "улица Мельникова, 18А"
+              - column:
+                  name: creation_timestamp
+                  value: "2024-11-10"
+              - column:
+                  name: amount
+                  value: 5000
+        - insert:
+            tableName: orders
+            columns:
+              - column:
+                  name: user_id
+                  value: 5
+              - column:
+                  name: category
+                  value: "CLEAN_UP"
+              - column:
+                  name: title
+                  value: "Уборка квартиры"
+              - column:
+                  name: description
+                  value: "Требуется уборщица для генеральной уборки квартиры."
+              - column:
+                  name: phone_id
+                  value: 11
+              - column:
+                  name: location
+                  value: "55.728326, 37.645452"
+              - column:
+                  name: address
+                  value: "Кожевническая улица, 14"
+              - column:
+                  name: creation_timestamp
+                  value: "2024-11-05"
+              - column:
+                  name: amount
+                  value: 3000
+        - insert:
+            tableName: orders
+            columns:
+              - column:
+                  name: user_id
+                  value: 5
+              - column:
+                  name: category
+                  value: "GRAPHIC_DESIGN"
+              - column:
+                  name: title
+                  value: "Создание баннера"
+              - column:
+                  name: description
+                  value: "Ищу дизайнера для создания рекламного баннера для интернет-магазина."
+              - column:
+                  name: phone_id
+                  value: 12
+              - column:
+                  name: location
+                  value: "55.728326, 37.645452"
+              - column:
+                  name: address
+                  value: "Кожевническая улица, 14"
+              - column:
+                  name: creation_timestamp
+                  value: "2024-10-25"
+              - column:
+                  name: amount
+                  value: 4500
+        - insert:
+            tableName: orders
+            columns:
+              - column:
+                  name: user_id
+                  value: 5
+              - column:
+                  name: category
+                  value: "COMPUTER_REPAIR_SERVICES"
+              - column:
+                  name: title
+                  value: "Настройка Wi-Fi роутера"
+              - column:
+                  name: description
+                  value: "Требуется специалист для настройки Wi-Fi роутера и подключения к интернету."
+              - column:
+                  name: phone_id
+                  value: 11
+              - column:
+                  name: location
+                  value: "55.728326, 37.645452"
+              - column:
+                  name: address
+                  value: "Кожевническая улица, 14"
+              - column:
+                  name: creation_timestamp
+                  value: "2024-09-20"
+              - column:
+                  name: amount
+                  value: 2000
+        - insert:
+            tableName: orders
+            columns:
+              - column:
+                  name: user_id
+                  value: 6
+              - column:
+                  name: category
+                  value: "TUTORING"
+              - column:
+                  name: title
+                  value: "Подготовка к ЕГЭ по математике"
+              - column:
+                  name: description
+                  value: "Ищу репетитора для подготовки к ЕГЭ по математике. Нужен опыт работы."
+              - column:
+                  name: phone_id
+                  value: 15
+              - column:
+                  name: location
+                  value: "55.675267, 37.512518"
+              - column:
+                  name: address
+                  value: "улица Удальцова, 12"
+              - column:
+                  name: creation_timestamp
+                  value: "2024-12-15"
+              - column:
+                  name: amount
+                  value: 5000
+        - insert:
+            tableName: orders
+            columns:
+              - column:
+                  name: user_id
+                  value: 6
+              - column:
+                  name: category
+                  value: "PHOTOGRAPHER_SERVICES"
+              - column:
+                  name: title
+                  value: "Фотосессия в студии"
+              - column:
+                  name: description
+                  value: "Ищу фотографа для студийной фотосессии. Нужны профессиональные снимки."
+              - column:
+                  name: phone_id
+                  value: 14
+              - column:
+                  name: location
+                  value: "55.675267, 37.512518"
+              - column:
+                  name: address
+                  value: "улица Удальцова, 12"
+              - column:
+                  name: creation_timestamp
+                  value: "2024-11-25"
+              - column:
+                  name: amount
+                  value: 8000
+        - insert:
+            tableName: orders
+            columns:
+              - column:
+                  name: user_id
+                  value: 7
+              - column:
+                  name: category
+                  value: "TUTORING"
+              - column:
+                  name: title
+                  value: "Подготовка к экзамену по физике"
+              - column:
+                  name: description
+                  value: "Нужен репетитор для подготовки к экзамену по физике. Важно объяснить основные концепции и помочь с задачами."
+              - column:
+                  name: phone_id
+                  value: 17
+              - column:
+                  name: location
+                  value: "55.675267, 37.512518"
+              - column:
+                  name: address
+                  value: "улица Удальцова, 12"
+              - column:
+                  name: creation_timestamp
+                  value: "2024-11-11"
+              - column:
+                  name: amount
+                  value: 4500
+        - insert:
+            tableName: orders
+            columns:
+              - column:
+                  name: user_id
+                  value: 7
+              - column:
+                  name: category
+                  value: "PHOTOGRAPHER_SERVICES"
+              - column:
+                  name: title
+                  value: "Фотосессия для детей"
+              - column:
+                  name: description
+                  value: "Ищем фотографа для детской фотосессии. Важно запечатлеть моменты с улыбками и радостью."
+              - column:
+                  name: phone_id
+                  value: 18
+              - column:
+                  name: location
+                  value: "55.675267, 37.512518"
+              - column:
+                  name: address
+                  value: "улица Удальцова, 12"
+              - column:
+                  name: creation_timestamp
+                  value: "2024-11-12"
+              - column:
+                  name: amount
+                  value: 6000
+        - insert:
+            tableName: orders
+            columns:
+              - column:
+                  name: user_id
+                  value: 7
+              - column:
+                  name: category
+                  value: "GRAPHIC_DESIGN"
+              - column:
+                  name: title
+                  value: "Разработка веб-дизайна"
+              - column:
+                  name: description
+                  value: "Ищу дизайнера для создания веб-дизайна для нового проекта. Важно учесть современные тренды и удобство использования."
+              - column:
+                  name: phone_id
+                  value: 19
+              - column:
+                  name: location
+                  value: "55.675267, 37.512518"
+              - column:
+                  name: address
+                  value: "улица Удальцова, 12"
+              - column:
+                  name: creation_timestamp
+                  value: "2024-11-13"
+              - column:
+                  name: amount
+                  value: 10000
+        - insert:
+            tableName: orders
+            columns:
+              - column:
+                  name: user_id
+                  value: 8
+              - column:
+                  name: category
+                  value: "TRANSFER"
+              - column:
+                  name: title
+                  value: "Перевод книги"
+              - column:
+                  name: description
+                  value: "Нужен переводчик для перевода книги с английского на русский. Объем — 300 страниц."
+              - column:
+                  name: phone_id
+                  value: 20
+              - column:
+                  name: location
+                  value: "55.758819, 37.412714"
+              - column:
+                  name: address
+                  value: "Осенний бульвар, 12к5"
+              - column:
+                  name: creation_timestamp
+                  value: "2024-11-14"
+              - column:
+                  name: amount
+                  value: 20000
+        - insert:
+            tableName: orders
+            columns:
+              - column:
+                  name: user_id
+                  value: 8
+              - column:
+                  name: category
+                  value: "CLEAN_UP"
+              - column:
+                  name: title
+                  value: "Ежедневная уборка офиса"
+              - column:
+                  name: description
+                  value: "Требуется уборщица для ежедневной уборки офиса. Площадь — 100 кв.м."
+              - column:
+                  name: phone_id
+                  value: 21
+              - column:
+                  name: location
+                  value: "55.758819, 37.412714"
+              - column:
+                  name: address
+                  value: "Осенний бульвар, 12к5"
+              - column:
+                  name: creation_timestamp
+                  value: "2024-11-15"
+              - column:
+                  name: amount
+                  value: 5000
+        - insert:
+            tableName: orders
+            columns:
+              - column:
+                  name: user_id
+                  value: 8
+              - column:
+                  name: category
+                  value: "MINOR_REPAIRS"
+              - column:
+                  name: title
+                  value: "Ремонт ванной комнаты"
+              - column:
+                  name: description
+                  value: "Нужен мастер для ремонта ванной комнаты. Включает замену плитки и сантехники."
+              - column:
+                  name: phone_id
+                  value: 21
+              - column:
+                  name: location
+                  value: "55.758819, 37.412714"
+              - column:
+                  name: address
+                  value: "Осенний бульвар, 12к5"
+              - column:
+                  name: creation_timestamp
+                  value: "2024-11-16"
+              - column:
+                  name: amount
+                  value: 15000
+        - insert:
+            tableName: orders
+            columns:
+              - column:
+                  name: user_id
+                  value: 9
+              - column:
+                  name: category
+                  value: "TUTORING"
+              - column:
+                  name: title
+                  value: "Уроки игры на гитаре"
+              - column:
+                  name: description
+                  value: "Ищу преподавателя для уроков игры на гитаре. Уровень — начинающий."
+              - column:
+                  name: phone_id
+                  value: 23
+              - column:
+                  name: location
+                  value: "55.760309, 37.419917"
+              - column:
+                  name: address
+                  value: "улица Крылатские Холмы, 37"
+              - column:
+                  name: creation_timestamp
+                  value: "2024-11-17"
+              - column:
+                  name: amount
+                  value: 3000
+        - insert:
+            tableName: orders
+            columns:
+              - column:
+                  name: user_id
+                  value: 9
+              - column:
+                  name: category
+                  value: "PHOTOGRAPHER_SERVICES"
+              - column:
+                  name: title
+                  value: "Фотосессия на мероприятии"
+              - column:
+                  name: description
+                  value: "Ищем фотографа для съемки корпоративного мероприятия. Важно запечатлеть все основные моменты."
+              - column:
+                  name: phone_id
+                  value: 23
+              - column:
+                  name: location
+                  value: "55.760309, 37.419917"
+              - column:
+                  name: address
+                  value: "улица Крылатские Холмы, 37"
+              - column:
+                  name: creation_timestamp
+                  value: "2024-11-18"
+              - column:
+                  name: amount
+                  value: 8000
+        - insert:
+            tableName: orders
+            columns:
+              - column:
+                  name: user_id
+                  value: 9
+              - column:
+                  name: category
+                  value: "GRAPHIC_DESIGN"
+              - column:
+                  name: title
+                  value: "Создание визиток"
+              - column:
+                  name: description
+                  value: "Ищу дизайнера для создания визиток для компании. Важно учесть фирменный стиль."
+              - column:
+                  name: phone_id
+                  value: 24
+              - column:
+                  name: location
+                  value: "55.760309, 37.419917"
+              - column:
+                  name: address
+                  value: "улица Крылатские Холмы, 37"
+              - column:
+                  name: creation_timestamp
+                  value: "2024-11-19"
+              - column:
+                  name: amount
+                  value: 5000
+        - insert:
+            tableName: orders
+            columns:
+              - column:
+                  name: user_id
+                  value: 10
+              - column:
+                  name: category
+                  value: "TRANSFER"
+              - column:
+                  name: title
+                  value: "Перевод юридических документов"
+              - column:
+                  name: description
+                  value: "Нужен переводчик для перевода юридических документов с английского на русский. Объем — 100 страниц."
+              - column:
+                  name: phone_id
+                  value: 26
+              - column:
+                  name: location
+                  value: "55.835368, 37.358699"
+              - column:
+                  name: address
+                  value: "улица Генерала Белобородова, 21"
+              - column:
+                  name: creation_timestamp
+                  value: "2024-11-20"
+              - column:
+                  name: amount
+                  value: 15000
+        - insert:
+            tableName: orders
+            columns:
+              - column:
+                  name: user_id
+                  value: 10
+              - column:
+                  name: category
+                  value: "CLEAN_UP"
+              - column:
+                  name: title
+                  value: "Уборка после ремонта"
+              - column:
+                  name: description
+                  value: "Требуется уборщица для уборки квартиры после ремонта. Площадь — 80 кв.м."
+              - column:
+                  name: phone_id
+                  value: 26
+              - column:
+                  name: location
+                  value: "55.835368, 37.358699"
+              - column:
+                  name: address
+                  value: "улица Генерала Белобородова, 21"
+              - column:
+                  name: creation_timestamp
+                  value: "2024-11-21"
+              - column:
+                  name: amount
+                  value: 7000
+        - insert:
+            tableName: orders
+            columns:
+              - column:
+                  name: user_id
+                  value: 10
+              - column:
+                  name: category
+                  value: "MINOR_REPAIRS"
+              - column:
+                  name: title
+                  value: "Ремонт балкона"
+              - column:
+                  name: description
+                  value: "Нужен мастер для ремонта балкона. Включает замену окон и отделку стен."
+              - column:
+                  name: phone_id
+                  value: 27
+              - column:
+                  name: location
+                  value: "55.835368, 37.358699"
+              - column:
+                  name: address
+                  value: "улица Генерала Белобородова, 21"
+              - column:
+                  name: creation_timestamp
+                  value: "2024-11-22"
+              - column:
+                  name: amount
+                  value: 12000

@@ -1,0 +1,9 @@
+databaseChangeLog:
+  - include:
+      file: liquibase/migration/create_orders_table.yml
+  - include:
+      file: liquibase/migration/add_data_in_orders_table.yml
+  -  include:
+       file: liquibase/migration/create_order_view_stats_table.yml
+  - include:
+      file: liquibase/migration/sql/add_data_orders_view_stats.sql

@@ -1,0 +1,27 @@
+server:
+  port: 8084
+
+application:
+  kafka:
+    topic: "order-topic"
+
+spring:
+  application:
+    name: service-notification
+  liquibase:
+    enabled: false
+  kafka:
+    consumer:
+      group-id: "test-group"
+      bootstrap-servers: ${KAFKA_CONSUMER_BOOTSTRAP_SERVERS:localhost:9092}
+      client-id: "demo-consumer"
+      auto-offset-reset: earliest
+eureka:
+  client:
+    fetchRegistry: true
+    serviceUrl:
+      defaultZone: ${EUREKA_CLIENT_SERVICEURL_DEFAULTZONE:http://localhost:9999/eureka/}
+  instance:
+    lease-renewal-interval-in-seconds: 30
+    metadataMap:
+      zone: zone1

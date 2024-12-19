@@ -1,0 +1,9 @@
+databaseChangeLog:
+  - include:
+      file: liquibase/migration/create_resume_table.yml
+  - include:
+      file: liquibase/migration/sql/add_resume_data.sql
+  - include:
+      file: liquibase/migration/create_resume_view_stats_table.yml
+  - include:
+      file: liquibase/migration/sql/add_data_resume_view_stats.sql

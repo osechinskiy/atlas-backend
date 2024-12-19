@@ -1,0 +1,301 @@
+databaseChangeLog:
+  - changeSet:
+      id: 1
+      author: boris.osechinskiy
+      preConditions:
+        - onFail: WARN
+        - not:
+            - tableExists:
+                tableName: user_phone_number
+      comment: Создание таблицы телефонных номеров пользователя
+      changes:
+        - createTable:
+            tableName: user_phone_number
+            columns:
+              - column:
+                  name: id
+                  type: int
+                  autoIncrement: true
+                  constraints:
+                    primaryKey: true
+              - column:
+                  name: user_id
+                  type: int
+                  constraints:
+                    nullable: false
+              - column:
+                  name: phone
+                  type: varchar(255)
+                  constraints:
+                    nullable: false
+        - addForeignKeyConstraint:
+            constraintName: fk_user_phone_number_user
+            baseTableName: user_phone_number
+            baseColumnNames: user_id
+            referencedTableName: users
+            referencedColumnNames: id
+      rollback:
+        - dropTable:
+            tableName: user_phone_number
+
+  - changeSet:
+      id: 2
+      author: boris.osechinskiy
+      preConditions:
+        - onFail: WARN
+        - tableExists:
+            tableName: user_phone_number
+      comment: Наполнение таблицы номеров телефонов пользователей
+      changes:
+        - insert:
+            tableName: user_phone_number
+            columns:
+              - column:
+                  name: user_id
+                  value: 2
+              - column:
+                  name: phone
+                  value: "89998888787"
+        - insert:
+            tableName: user_phone_number
+            columns:
+              - column:
+                  name: user_id
+                  value: 2
+              - column:
+                  name: phone
+                  value: "89998888783"
+        - insert:
+            tableName: user_phone_number
+            columns:
+              - column:
+                  name: user_id
+                  value: 1
+              - column:
+                  name: phone
+                  value: "89998888799"
+        - insert:
+            tableName: user_phone_number
+            columns:
+              - column:
+                  name: user_id
+                  value: 1
+              - column:
+                  name: phone
+                  value: "89998888788"
+        - insert:
+            tableName: user_phone_number
+            columns:
+              - column:
+                  name: user_id
+                  value: 3
+              - column:
+                  name: phone
+                  value: "89996666555"
+        - insert:
+            tableName: user_phone_number
+            columns:
+              - column:
+                  name: user_id
+                  value: 3
+              - column:
+                  name: phone
+                  value: "89996666544"
+        - insert:
+            tableName: user_phone_number
+            columns:
+              - column:
+                  name: user_id
+                  value: 3
+              - column:
+                  name: phone
+                  value: "89996666533"
+        - insert:
+            tableName: user_phone_number
+            columns:
+              - column:
+                  name: user_id
+                  value: 4
+              - column:
+                  name: phone
+                  value: "89995555444"
+        - insert:
+            tableName: user_phone_number
+            columns:
+              - column:
+                  name: user_id
+                  value: 4
+              - column:
+                  name: phone
+                  value: "89995555433"
+        - insert:
+            tableName: user_phone_number
+            columns:
+              - column:
+                  name: user_id
+                  value: 4
+              - column:
+                  name: phone
+                  value: "89995555422"
+        - insert:
+            tableName: user_phone_number
+            columns:
+              - column:
+                  name: user_id
+                  value: 5
+              - column:
+                  name: phone
+                  value: "89994444333"
+        - insert:
+            tableName: user_phone_number
+            columns:
+              - column:
+                  name: user_id
+                  value: 5
+              - column:
+                  name: phone
+                  value: "89994444322"
+        - insert:
+            tableName: user_phone_number
+            columns:
+              - column:
+                  name: user_id
+                  value: 5
+              - column:
+                  name: phone
+                  value: "89994444311"
+        - insert:
+            tableName: user_phone_number
+            columns:
+              - column:
+                  name: user_id
+                  value: 6
+              - column:
+                  name: phone
+                  value: "89993333222"
+        - insert:
+            tableName: user_phone_number
+            columns:
+              - column:
+                  name: user_id
+                  value: 6
+              - column:
+                  name: phone
+                  value: "89993333211"
+        - insert:
+            tableName: user_phone_number
+            columns:
+              - column:
+                  name: user_id
+                  value: 6
+              - column:
+                  name: phone
+                  value: "89993333200"
+        - insert:
+            tableName: user_phone_number
+            columns:
+              - column:
+                  name: user_id
+                  value: 7
+              - column:
+                  name: phone
+                  value: "89992222111"
+        - insert:
+            tableName: user_phone_number
+            columns:
+              - column:
+                  name: user_id
+                  value: 7
+              - column:
+                  name: phone
+                  value: "89992222100"
+        - insert:
+            tableName: user_phone_number
+            columns:
+              - column:
+                  name: user_id
+                  value: 7
+              - column:
+                  name: phone
+                  value: "89992222099"
+        - insert:
+            tableName: user_phone_number
+            columns:
+              - column:
+                  name: user_id
+                  value: 8
+              - column:
+                  name: phone
+                  value: "89991111099"
+        - insert:
+            tableName: user_phone_number
+            columns:
+              - column:
+                  name: user_id
+                  value: 8
+              - column:
+                  name: phone
+                  value: "89991111088"
+        - insert:
+            tableName: user_phone_number
+            columns:
+              - column:
+                  name: user_id
+                  value: 8
+              - column:
+                  name: phone
+                  value: "89991111077"
+        - insert:
+            tableName: user_phone_number
+            columns:
+              - column:
+                  name: user_id
+                  value: 9
+              - column:
+                  name: phone
+                  value: "89990000999"
+        - insert:
+            tableName: user_phone_number
+            columns:
+              - column:
+                  name: user_id
+                  value: 9
+              - column:
+                  name: phone
+                  value: "89990000988"
+        - insert:
+            tableName: user_phone_number
+            columns:
+              - column:
+                  name: user_id
+                  value: 9
+              - column:
+                  name: phone
+                  value: "89990000977"
+        - insert:
+            tableName: user_phone_number
+            columns:
+              - column:
+                  name: user_id
+                  value: 10
+              - column:
+                  name: phone
+                  value: "89990000111"
+        - insert:
+            tableName: user_phone_number
+            columns:
+              - column:
+                  name: user_id
+                  value: 10
+              - column:
+                  name: phone
+                  value: "89990000100"
+        - insert:
+            tableName: user_phone_number
+            columns:
+              - column:
+                  name: user_id
+                  value: 10
+              - column:
+                  name: phone
+                  value: "89990000099"
