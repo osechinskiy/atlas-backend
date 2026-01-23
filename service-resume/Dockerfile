@@ -15,7 +15,7 @@ COPY service-resume/src ./service-resume/src
 RUN mvn -f ./service-resume/pom.xml clean package -DskipTests
 
 # Используем более легковесный образ для запуска Java-приложения
-FROM openjdk:17-jdk-slim
+FROM openjdk:17.0.1-jdk-slim
 
 # Устанавливаем рабочую директорию
 WORKDIR /app

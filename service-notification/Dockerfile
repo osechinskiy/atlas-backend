@@ -14,7 +14,7 @@ COPY service-notification/src ./service-notification/src
 RUN mvn -f ./service-notification/pom.xml clean package -DskipTests
 
 # Используем более легковесный образ для запуска Java-приложения
-FROM openjdk:17-jdk-slim
+FROM openjdk:17.0.1-jdk-slim
 
 # Устанавливаем рабочую директорию
 WORKDIR /app

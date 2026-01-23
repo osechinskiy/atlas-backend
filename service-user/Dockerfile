@@ -15,7 +15,7 @@ COPY service-user/src ./service-user/src
 RUN mvn -f ./service-user/pom.xml clean package -DskipTests
 
 # Используем более легковесный образ для запуска Java-приложения
-FROM openjdk:17-jdk-slim
+FROM openjdk:17.0.1-jdk-slim
 
 # Устанавливаем рабочую директорию
 WORKDIR /app
